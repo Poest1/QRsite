@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Contact Card</title>
+    
+    <!-- App Store Smart Banner (replace YOUR_APP_STORE_ID with actual ID) -->
+    <meta name="apple-itunes-app" content="app-id=YOUR_APP_STORE_ID">
+    
+    <style>
+        :root {
+            --accent: #0D9488;
+            --accent-light: #14B8A6;
+            --bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #171717;
+            --text-secondary: #525252;
+            --text-tertiary: #A3A3A3;
+            --border: #E5E5E5;
+            --success: #10B981;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0A0A0A;
+                --card-bg: #171717;
+                --text-primary: #FAFAFA;
+                --text-secondary: #A3A3A3;
+                --text-tertiary: #737373;
+                --border: #262626;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 24px 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 32px 0;
+        }
+        
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+        
+        .title-company {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        /* Card */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+        }
+        
+        .field {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.2s;
+        }
+        
+        .field:last-child {
+            border-bottom: none;
+        }
+        
+        .field:active {
+            background: var(--border);
+        }
+        
+        .field-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+        
+        .field-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        
+        .field-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .field-label {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        
+        .field-value {
+            font-size: 16px;
+            color: var(--text-primary);
+            word-break: break-word;
+        }
+        
+        .field-arrow {
+            color: var(--text-tertiary);
+            margin-left: 8px;
+        }
+        
+        /* Actions */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.15s, opacity 0.15s;
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        /* App Promo */
+        .app-promo {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .app-promo-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .app-promo-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        .app-promo .btn {
+            padding: 12px 20px;
+            font-size: 15px;
+        }
+        
+        /* Loading & Error */
+        .loading, .error {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .error-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .error-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .error-message {
+            color: var(--text-secondary);
+        }
+        
+        /* Hidden */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading contact...</p>
+        </div>
+        
+        <!-- Error State -->
+        <div id="error" class="error hidden">
+            <div class="error-icon">⚠️</div>
+            <div class="error-title">Couldn't Load Contact</div>
+            <p class="error-message">The link may be invalid or expired.</p>
+        </div>
+        
+        <!-- Card Content -->
+        <div id="content" class="hidden">
+            <div class="header">
+                <div class="avatar" id="avatar"></div>
+                <h1 class="name" id="name"></h1>
+                <p class="title-company" id="title-company"></p>
+            </div>
+            
+            <div class="card" id="fields"></div>
+            
+            <div class="actions">
+                <button class="btn btn-primary" id="add-contact">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm8-6v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2z"/></svg>
+                    Add to Contacts
+                </button>
+                
+                <a class="btn btn-secondary hidden" id="open-app" href="#">
+                    <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    Open in App
+                </a>
+            </div>
+            
+            <div class="app-promo">
+                <div class="app-promo-title">CardScan Pro</div>
+                <p class="app-promo-subtitle">Scan & organize business cards instantly</p>
+                <a class="btn btn-secondary" id="app-store-link" href="#" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Get the App
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Base64URL decode
+        function base64UrlDecode(str) {
+            let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+            while (base64.length % 4) base64 += '=';
+            try {
+                return decodeURIComponent(escape(atob(base64)));
+            } catch (e) {
+                return atob(base64);
+            }
+        }
+        
+        // Parse payload from URL
+        function getPayload() {
+            const params = new URLSearchParams(window.location.search);
+            const encoded = params.get('d');
+            if (!encoded) return null;
+            
+            try {
+                const json = base64UrlDecode(encoded);
+                return JSON.parse(json);
+            } catch (e) {
+                console.error('Failed to decode payload:', e);
+                return null;
+            }
+        }
+        
+        // Generate vCard
+        function generateVCard(card) {
+            const escape = (s) => s ? s.replace(/[\\;,\n]/g, '\\$&') : '';
+            
+            let vcard = 'BEGIN:VCARD\nVERSION:3.0\n';
+            vcard += `FN:${escape(card.name)}\n`;
+            
+            // Parse name parts
+            const nameParts = card.name.split(' ');
+            if (nameParts.length >= 2) {
+                vcard += `N:${escape(nameParts.slice(1).join(' '))};${escape(nameParts[0])};;;\n`;
+            } else {
+                vcard += `N:;${escape(card.name)};;;\n`;
+            }
+            
+            if (card.title) vcard += `TITLE:${escape(card.title)}\n`;
+            if (card.company) vcard += `ORG:${escape(card.company)}\n`;
+            if (card.email) vcard += `EMAIL;TYPE=WORK:${escape(card.email)}\n`;
+            if (card.phone) vcard += `TEL;TYPE=WORK:${escape(card.phone)}\n`;
+            if (card.website) vcard += `URL:${escape(card.website)}\n`;
+            if (card.linkedIn) vcard += `URL;TYPE=LinkedIn:${escape(card.linkedIn)}\n`;
+            if (card.address) vcard += `ADR;TYPE=WORK:;;${escape(card.address)};;;;\n`;
+            
+            vcard += 'END:VCARD';
+            return vcard;
+        }
+        
+        // Download vCard
+        function downloadVCard(card) {
+            const vcard = generateVCard(card);
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${card.name.replace(/\s+/g, '_')}.vcf`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Get initials
+        function getInitials(name) {
+            const parts = name.split(' ');
+            if (parts.length >= 2) {
+                return (parts[0][0] + parts[1][0]).toUpperCase();
+            }
+            return name.substring(0, 2).toUpperCase();
+        }
+        
+        // Field icon SVGs
+        const icons = {
+            email: '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+            phone: '<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>',
+            website: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
+            linkedin: '<svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>',
+            address: '<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>',
+            title: '<svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>',
+            company: '<svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>'
+        };
+        
+        // Render card
+        function renderCard(card) {
+            document.getElementById('avatar').textContent = getInitials(card.name);
+            document.getElementById('name').textContent = card.name;
+            
+            const titleCompany = [card.title, card.company].filter(Boolean).join(' at ');
+            document.getElementById('title-company').textContent = titleCompany;
+            
+            const fieldsContainer = document.getElementById('fields');
+            fieldsContainer.innerHTML = '';
+            
+            const fields = [
+                { key: 'email', label: 'Email', href: (v) => `mailto:${v}` },
+                { key: 'phone', label: 'Phone', href: (v) => `tel:${v.replace(/\s/g, '')}` },
+                { key: 'website', label: 'Website', href: (v) => v.startsWith('http') ? v : `https://${v}` },
+                { key: 'linkedIn', label: 'LinkedIn', href: (v) => v.startsWith('http') ? v : `https://${v}` },
+                { key: 'address', label: 'Address', href: (v) => `https://maps.apple.com/?q=${encodeURIComponent(v)}` }
+            ];
+            
+            fields.forEach(({ key, label, href }) => {
+                const value = card[key];
+                if (!value) return;
+                
+                const field = document.createElement('a');
+                field.className = 'field';
+                field.href = href(value);
+                if (key === 'website' || key === 'linkedIn') {
+                    field.target = '_blank';
+                    field.rel = 'noopener';
+                }
+                
+                field.innerHTML = `
+                    <div class="field-icon">${icons[key] || icons.website}</div>
+                    <div class="field-content">
+                        <div class="field-label">${label}</div>
+                        <div class="field-value">${value}</div>
+                    </div>
+                    <div class="field-arrow">›</div>
+                `;
+                
+                fieldsContainer.appendChild(field);
+            });
+            
+            // Add contact button
+            document.getElementById('add-contact').onclick = () => downloadVCard(card);
+            
+            // Open in app link (deep link)
+            const params = new URLSearchParams(window.location.search);
+            const encoded = params.get('d');
+            const openAppBtn = document.getElementById('open-app');
+            openAppBtn.href = `cardscanpro://card/${encoded}`;
+            openAppBtn.classList.remove('hidden');
+            
+            // App Store link (replace YOUR_APP_ID with actual App Store ID)
+            document.getElementById('app-store-link').href = 'https://apps.apple.com/app/idYOUR_APP_ID';
+            
+            // Show content
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('content').classList.remove('hidden');
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = getPayload();
+            
+            if (!card || !card.name) {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+                return;
+            }
+            
+            renderCard(card);
+        });
+    </script>
+</body>
+</html>

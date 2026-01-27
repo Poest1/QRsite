@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - CardScan Pro AI</title>
+    <style>
+        :root {
+            --primary: #0D9488;
+            --primary-light: rgba(13, 148, 136, 0.1);
+            --bg: #FAFAFA;
+            --text: #1F2937;
+            --text-secondary: #6B7280;
+            --card-bg: #FFFFFF;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #111827;
+                --text: #F9FAFB;
+                --text-secondary: #9CA3AF;
+                --card-bg: #1F2937;
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 32px;
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin: 32px 0 16px;
+            color: var(--text);
+        }
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .faq-answer {
+            color: var(--text-secondary);
+        }
+        .contact-card {
+            background: linear-gradient(135deg, var(--primary), #0891B2);
+            border-radius: 16px;
+            padding: 32px;
+            color: white;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .contact-card p {
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        .contact-btn {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 12px 32px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .contact-btn:hover {
+            transform: scale(1.05);
+        }
+        .tip-box {
+            background: var(--primary-light);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .tip-box strong {
+            color: var(--primary);
+        }
+        ul {
+            padding-left: 24px;
+            color: var(--text-secondary);
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--text-secondary);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Support Center</h1>
+    <p class="subtitle">How can we help you today?</p>
+
+    <div class="contact-card">
+        <h3>Need Help?</h3>
+        <p>Our support team is here to assist you with any questions or issues.</p>
+        <a href="mailto:support@cardscanpro.ai" class="contact-btn">Contact Support</a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <p class="faq-question">How do I scan a business card?</p>
+        <p class="faq-answer">Tap the "Scan" button on the home screen, point your camera at a business card, and hold steady. The app will automatically detect and capture the card, then extract all the contact information using AI.</p>
+    </div>
+
+    <div class="faq-item">
+        <p class="faq-question">How does iCloud sync work?</p>
+        <p class="faq-answer">When enabled, your business cards automatically sync across all your Apple devices signed into the same iCloud account. If you reinstall the app, your cards will be restored automatically.</p>
+    </div>
+
+    <div class="faq-item">
+        <p class="faq-question">Can I export cards to my Contacts app?</p>
+        <p class="faq-answer">Yes! Open any saved card, tap the share button, and select "Save to Contacts". You can also export as a vCard file to share via email or message.</p>
+    </div>
+
+    <div class="faq-item">
+        <p class="faq-question">Is my data private and secure?</p>
+        <p class="faq-answer">Absolutely. All data is stored locally on your device and in your private iCloud account. We never send your data to external servers, and we don't use any analytics or tracking. <a href="privacy.html">Read our Privacy Policy</a></p>
+    </div>
+
+    <div class="faq-item">
+        <p class="faq-question">The OCR didn't recognize something correctly. What should I do?</p>
+        <p class="faq-answer">You can edit any field by tapping on it in the review screen. For best results, ensure good lighting and hold the camera steady. Cards with unusual fonts or designs may require manual correction.</p>
+    </div>
+
+    <div class="faq-item">
+        <p class="faq-question">How do I set up follow-up reminders?</p>
+        <p class="faq-answer">After scanning a card, enable "Follow-up reminder" in the review screen. Choose when you want to be reminded, and the app will send you a notification at that time.</p>
+    </div>
+
+    <div class="faq-item">
+        <p class="faq-question">Can I share my digital card via QR code?</p>
+        <p class="faq-answer">Yes! Go to "My Card" tab, set up your digital business card, then tap "Share QR Code". Others can scan this code to instantly save your contact information.</p>
+    </div>
+
+    <div class="tip-box">
+        <p><strong>💡 Pro Tip:</strong> For best scanning results, place the business card on a contrasting background (dark card on light surface, or vice versa) and ensure even lighting without glare.</p>
+    </div>
+
+    <h2>Troubleshooting</h2>
+
+    <div class="faq-item">
+        <p class="faq-question">Cards not syncing between devices?</p>
+        <p class="faq-answer">
+            <ul>
+                <li>Ensure iCloud is enabled in the app settings</li>
+                <li>Check that you're signed into the same iCloud account on all devices</li>
+                <li>Make sure you have an internet connection</li>
+                <li>Try force-closing and reopening the app</li>
+            </ul>
+        </p>
+    </div>
+
+    <div class="faq-item">
+        <p class="faq-question">Camera permission denied?</p>
+        <p class="faq-answer">Go to iOS Settings → CardScan Pro AI → Camera and enable camera access. The app needs camera permission to scan business cards.</p>
+    </div>
+
+    <h2>Feature Requests</h2>
+    <p>Have an idea to make CardScan Pro AI even better? We'd love to hear from you! Send your suggestions to <a href="mailto:feedback@cardscanpro.ai">feedback@cardscanpro.ai</a></p>
+
+    <div class="footer">
+        <p>
+            <a href="privacy.html">Privacy Policy</a> · 
+            <a href="index.html">Home</a>
+        </p>
+        <p style="margin-top: 12px;">© 2026 CardScan Pro AI. All rights reserved.</p>
+    </div>
+</body>
+</html>
