@@ -8,22 +8,11 @@
                 ],
                 "components": [
                     {
-                        "/": "/card/c.html",
-                        "?": { "d": "*" },
-                        "comment": "Card share links with d= query param"
-                    },
-                    {
-                        "/": "/card/c",
-                        "?": { "d": "*" },
-                        "comment": "Card share links without .html extension"
+                        "/": "/QRsite/c.html",
+                        "?": { "d": "*" }
                     }
                 ]
             }
-        ]
-    },
-    "webcredentials": {
-        "apps": [
-            "LB86P743G5.com.berk.cardscanproai.ios"
         ]
     }
 }
